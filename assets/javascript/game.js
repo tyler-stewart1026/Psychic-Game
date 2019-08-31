@@ -24,7 +24,7 @@ document.onkeyup = function (event) {
         guessesLeft = 10;
         losses = losses + 1;
         guessesSoFar = [];
-        document.getElementById("losses").innerHTML = "Losses: " + losses;
+        document.getElementById("loss").innerHTML = "Losses: " + losses;
         console.log("You're out of guesses!")
         
         return;
@@ -35,8 +35,17 @@ document.onkeyup = function (event) {
     if (userGuess === selectedLetter) {
         guessesLeft = 10
         wins = wins + 1;
+        guessesSoFar = [];
         document.getElementById("wins").innerHTML = "Wins: " + wins;
+        // text = charList[Math.floor(Math.random() * charList.length)]
+        // return text;
         console.log("You win!")
+        // function randomLetter() {
+
+        //     var text = charList[Math.floor(Math.random() * charList.length)]
+        
+        //     return text;
+        // };
     }
     else {
         guessesSoFar.push(userGuess)
