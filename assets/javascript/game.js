@@ -2,40 +2,50 @@
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 0;
-var guessesSoFar = 0;
-var selectedLetter = 0;
+var guessesLeft = 10;
+var guessesSoFar = []
+var charList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var selectedLetter = randomLetter();
+console.log(selectedLetter);
 
-var computerNumber = getRandomLetter();
 
 //some functions
-function getRandomLetter() {
-    var RandLttr = Math.floor(Math.random()*charList.length);
-    return rand;
-}
+function randomLetter() {
 
-function checkUserGuess() {}
+    var text = charList[Math.floor(Math.random() * charList.length)]
 
-function displayLettersGuessed() {}
-
-function reset() {}
-
-
-
-
-
-
-
-
-document.onkeyup = function (event) { 
-
-function randomNumber() {
-    var text = " "
-    var charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    for (var i = 0; i < l; i++) {
-        text += charList.charAt(Math.floor(Math.random() * char_list.length));
-    }
     return text;
-}
-console.log(randomNumber(1));
+};
+document.onkeyup = function (event) {
+    var userGuess = event.key.toUpperCase();
+    document.getElementById("guesses-left").innerHTML = "Guesses left: " + guessesLeft;
+    console.log(userGuess)
+    if (guessesLeft < 1) {
+        guessesLeft = 10;
+        losses = losses + 1;
+        guessesSoFar = [];
+        document.getElementById("losses").innerHTML = "Losses: " + losses;
+        console.log("You're out of guesses!")
+        
+        return;
+    }
+    if (!charList.includes(userGuess)) {
+        return;
+    }
+    if (userGuess === selectedLetter) {
+        guessesLeft = 10
+        wins = wins + 1;
+        document.getElementById("wins").innerHTML = "Wins: " + wins;
+        console.log("You win!")
+    }
+    else {
+        guessesSoFar.push(userGuess)
+        guessesLeft = guessesLeft -1
+        document.getElementById("guesses-so-far").innerHTML = "Your guesses so far: " + guessesSoFar;
+        console.log(guessesLeft)
+        console.log("Guess again")
+        console.log(guessesSoFar)
+    }
+};
+
 
