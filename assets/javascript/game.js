@@ -24,7 +24,9 @@ document.onkeyup = function (event) {
         guessesLeft = 10;
         losses = losses + 1;
         guessesSoFar = [];
+        selectedLetter = charList[Math.floor(Math.random() * charList.length)];
         document.getElementById("loss").innerHTML = "Losses: " + losses;
+        console.log("New Letter: " + selectedLetter);
         console.log("You're out of guesses!")
 
         return;
