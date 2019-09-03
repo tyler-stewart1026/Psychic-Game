@@ -18,6 +18,11 @@ function randomLetter() {
 };
 document.onkeyup = function (event) {
     var userGuess = event.key.toUpperCase();
+    if (guessesSoFar.includes(userGuess)){
+        alert("You've already guessed that letter!")
+        console.log("choose another letter");
+        return;
+    }
     document.getElementById("guesses-left").innerHTML = "Guesses left: " + guessesLeft;
     console.log(userGuess)
     if (guessesLeft < 1) {
@@ -40,6 +45,7 @@ document.onkeyup = function (event) {
         selectedLetter = charList[Math.floor(Math.random() * charList.length)];
         guessesSoFar = [];
         document.getElementById("wins").innerHTML = "Wins: " + wins;
+        document.getElementById("guesses-so-far").innerHTML = "Your guesses so far: " + guessesSoFar;
         console.log("You win!");
         console.log("new letter: " + selectedLetter);
     }
